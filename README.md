@@ -23,3 +23,7 @@ Tecnologias Usadas
 
 PARA RODAR A API nestjs em modo DEV
 npm run start:dev
+
+## Arquitetura do projeto
+
+![alt text](./arquitetura_projeto.png)
