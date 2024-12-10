@@ -1,8 +1,11 @@
 ###
-
 GET http://localhost:3000/hello
-
-
 ###
-
 GET http://localhost:3000/places?text=Rua Campinas, 180, Catanduva
+###
+GET http://localhost:3000/places?text=Rua Martinho CAnozo, 250, Catanduva
+### 
+@originId = ChIJseDhm4YevJQRZAY9m1osCSQ
+@destinationId = ChIJ74QbW78fvJQRfBAK2fEucXs
+###
+GET http://localhost:3000/directions?originId={{ originId }}&destinationId={{ destinationId }}
