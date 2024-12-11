@@ -3,6 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MapsModule } from './maps/maps.module';
 import { ConfigModule } from '@nestjs/config';
+import { RoutesModule } from './routes/routes.module';
+import { PrismaModule } from './prisma/prisma.module';
 
 
 @Module({
@@ -10,7 +12,9 @@ import { ConfigModule } from '@nestjs/config';
     ConfigModule.forRoot({
       isGlobal: true
     }),
-    MapsModule
+    MapsModule,
+    RoutesModule,
+    PrismaModule
   ],
   controllers: [AppController],
   providers: [AppService],
