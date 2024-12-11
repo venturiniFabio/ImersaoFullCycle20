@@ -21,15 +21,16 @@ Tecnologias Usadas
 - Google Maps API
 
 COMANDOS USADOS
- - PARA RODAR A API nestjs em modo DEV
-   npm run start:dev
 
-DOCKER
+ - npm run start:dev
  - docker compose up --build
  - docker compose exec app bash
-
-BANCO DE DADOS
  - npx prisma generate
+
+ - nest g controller xxxxx
+ - nest g service xxxxx
+ - nest g module xxxxx
+ - nest g resource xxxxx
 
 
 ## Arquitetura do projeto

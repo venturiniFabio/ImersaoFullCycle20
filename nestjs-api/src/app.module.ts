@@ -12,9 +12,10 @@ import { PrismaModule } from './prisma/prisma.module';
     ConfigModule.forRoot({
       isGlobal: true
     }),
+    PrismaModule,
     MapsModule,
     RoutesModule,
-    PrismaModule
+    
   ],
   controllers: [AppController],
   providers: [AppService],
