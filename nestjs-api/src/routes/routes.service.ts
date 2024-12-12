@@ -1,31 +1,25 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { CreateRouteDto } from './dto/create-route.dto';
 import { UpdateRouteDto } from './dto/update-route.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { DirectionsService } from 'src/maps/directions/directions.service';
-import { console } from 'inspector';
+import { DirectionsService } from '../maps/directions/directions.service';
 
 @Injectable()
 export class RoutesService {
-
   constructor(
     private prismaService: PrismaService,
     private directionsService: DirectionsService,
   ) {}
-  
+
   async create(createRouteDto: CreateRouteDto) {
     console.log(createRouteDto);
-
     const { available_travel_modes, geocoded_waypoints, routes, request } =
       await this.directionsService.getDirections(
         createRouteDto.source_id,
         createRouteDto.destination_id,
       );
 
-      const legs = routes[0].legs[0];
+    const legs = routes[0].legs[0];
     return this.prismaService.route.create({
       data: {
         name: createRouteDto.name,
@@ -54,7 +48,7 @@ export class RoutesService {
           }),
         ),
       },
-    });    
+    });
   }
 
   findAll() {

@@ -1,4 +1,3 @@
-import { Config } from './../../../node_modules/@googlemaps/google-maps-services-js/dist/client.d';
 import { Injectable } from '@nestjs/common';
 import {
   Client as GoogleMapsClient,

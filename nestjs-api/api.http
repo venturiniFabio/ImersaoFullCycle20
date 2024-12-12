@@ -12,10 +12,10 @@ GET http://localhost:3000/directions?originId={{ originId }}&destinationId={{ de
 
 ###
 POST http://localhost:3000/routes
-
 Content-Type: application/json
+
 {
-    "name": "Minha Rota 1",
+    "name": "Minha Rota 2",
     "source_id": "{{ originId }}",
     "destination_id": "{{ destinationId }}"
 }
@@ -24,4 +24,4 @@ Content-Type: application/json
 GET http://localhost:3000/routes
 
 ###
-GET http://localhost:3000/routes/674ef78bab1148ea9161c23b
+GET http://localhost:3000/routes/675ace65d6fad157339166e9
