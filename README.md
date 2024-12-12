@@ -19,6 +19,9 @@ Tecnologias Usadas
 - Prisma ORM e MongoDB
 - REST API
 - Google Maps API
+- React.js
+- React Server Components
+- Tailwind
 
 COMANDOS USADOS
 
