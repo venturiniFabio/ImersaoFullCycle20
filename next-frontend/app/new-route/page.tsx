@@ -1,3 +1,5 @@
+import { NewRouteForm } from "./NewRouteForm";
+
 export async function searchDirections(source: string, destination: string) {
   const [sourceResponse, destinationResponse] = await Promise.all([
     fetch(`http://localhost:3000/places?text=${source}`, {
@@ -51,7 +53,7 @@ export async function searchDirections(source: string, destination: string) {
 
   return {
     directionsData,
-    placeSourceId, 
+    placeSourceId,
     placeDestinationId,
   };
 }
@@ -139,10 +141,32 @@ export async function NewRoutePage({
                 {directionsData.routes[0].legs[0].duration.text}
               </li>
             </ul>
+            <NewRouteForm>
+              {placeSourceId && (
+                <input
+                  type="hidden"
+                  name="sourceId"
+                  defaultValue={placeSourceId}
+                />
+              )}
+              {placeDestinationId && (
+                <input
+                  type="hidden"
+                  name="destinationId"
+                  defaultValue={placeDestinationId}
+                />
+              )}
+              <button
+                type="submit"
+                className="bg-main text-primary font-bold p-2 rounded mt-4"
+              >
+                Adicionar rota
+              </button>
+            </NewRouteForm>
           </div>
         )}
       </div>
-    
+      
     </div>
   );
 }
