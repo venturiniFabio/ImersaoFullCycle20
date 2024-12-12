@@ -51,7 +51,7 @@ export async function searchDirections(source: string, destination: string) {
 
   return {
     directionsData,
-    placeSourceId,
+    placeSourceId, 
     placeDestinationId,
   };
 }
