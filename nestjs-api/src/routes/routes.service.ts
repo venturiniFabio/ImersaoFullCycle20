@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { CreateRouteDto } from './dto/create-route.dto';
 import { UpdateRouteDto } from './dto/update-route.dto';
@@ -12,7 +13,7 @@ export class RoutesService {
   ) {}
 
   async create(createRouteDto: CreateRouteDto) {
-    console.log(createRouteDto);
+    //console.log(createRouteDto);
     const { available_travel_modes, geocoded_waypoints, routes, request } =
       await this.directionsService.getDirections(
         createRouteDto.source_id,
