@@ -2,7 +2,7 @@
 
 ## Descrição
 
-Repositório do Next.js (front-end da aplicação).
+Repositório do Golang (front-end da aplicação).
 
 ## Requerimentos
 
@@ -14,6 +14,18 @@ Repositório do Next.js (front-end da aplicação).
 4. Guarde a chave de API gerada.
 
 ## Rodar a aplicação
+
+Levante o container:
+
+```
+docker compose up -d
+```
+
+Acesse o container do Next.js:
+
+```
+docker compose exec next bash
+```
 
 Gere o arquivo `.env` através do comando:
 

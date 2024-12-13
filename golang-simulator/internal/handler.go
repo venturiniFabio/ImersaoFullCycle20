@@ -2,6 +2,8 @@ package internal
 
 import (
 	"time"
+
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
 type RouteCreatedEvent struct {
@@ -53,7 +55,7 @@ type DriverMovedEvent struct {
 	Lng       float64 `json:"lng"`
 }
 
-func NewDriverMovedEvent(routeID string, lat, lng float64) *DriverMovedEvent {
+func NewDriverMovedEvent(routeID string, lat float64, lng float64) *DriverMovedEvent {
 	return &DriverMovedEvent{
 		EventName: "DriverMoved",
 		RouteID:   routeID,
@@ -62,29 +64,27 @@ func NewDriverMovedEvent(routeID string, lat, lng float64) *DriverMovedEvent {
 	}
 }
 
-func RouteCreatedHandler(event *RouteCreatedEvent, routeService *RouteService) (*FreightCalculatedEvent, error) {
+func RouteCreatedHandler(event *RouteCreatedEvent, routeService *RouteService, mongoClient *mongo.Client) (*FreightCalculatedEvent, error) {
 	route := NewRoute(event.RouteID, event.Distance, event.Directions)
 	routeCreated, err := routeService.CreateRoute(route)
 	if err != nil {
 		return nil, err
 	}
-	freightCalculatedEvent := NewFreightCalculatedEvent(routeCreated.ID, routeCreated.FreightPrice)
-	return freightCalculatedEvent, nil
+	return NewFreightCalculatedEvent(routeCreated.ID, routeCreated.FreightPrice), nil
 }
 
-func DeliveryStartedHandler(event *DeliveryStartedEvent, routeService *RouteService, ch chan *DriverMovedEvent) error {
+func DeliveryStartedHandler(event *DeliveryStartedEvent, routeService *RouteService, mongoClient *mongo.Client, ch chan *DriverMovedEvent) error {
 	route, err := routeService.GetRoute(event.RouteID)
 	if err != nil {
 		return err
 	}
 
-	driverMovedEvent := NewDriverMovedEvent(route.ID, 0, 0)
-	for _, direction := range route.Directions {
-		driverMovedEvent.RouteID = route.ID
-		driverMovedEvent.Lat = direction.Lat
-		driverMovedEvent.Lng = direction.Lng
-		time.Sleep(time.Second)
-		ch <- driverMovedEvent
-	}
+	go func() {
+		for _, direction := range route.Directions {
+			dme := NewDriverMovedEvent(route.ID, direction.Lat, direction.Lng)
+			ch <- dme
+			time.Sleep(1 * time.Second)
+		}
+	}()
 	return nil
 }

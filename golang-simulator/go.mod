@@ -1,4 +1,4 @@
-module github.com/venturiniFabio/ImersaoFullCycle20/simulator
+module github.com/venturiniFabio/imersaofullcycle20/simulator
 
 go 1.23.1
 

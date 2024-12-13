@@ -2,20 +2,20 @@ import type { Config } from "tailwindcss";
 
 export default {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       colors: {
         default: "#242526",
-        main: "#142c54",
+        main: "#0032ff",
         error: "#f35759",
         success: "#366912",
       },
       textColor: {
-        primary: "#f7f7f7",
+        primary: "#dbdad9",
         contrast: "#ffffff"
       }
     },
